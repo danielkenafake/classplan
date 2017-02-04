@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Class Planner</title>
+        <link rel="stylesheet" src="js/jquery-ui-1.12.1.custom/jquery-ui.min.css">
+        <style>
+            body {margin: 0; border: 0; padding: 0;}
+            .btn {background-color:#f4f4f4; border:1px grey solid; margin:10px; width:100px; height:30px;}
+            .drag { width:100px; height:auto; padding: 5px; float: left; margin: 10px 10px 10px 10px; font-size: .9em; background-color: red; }
+            #snaptarget { height: 140px; }
+            #drop { width: 80%; height:90%; border:2px solid #ccc; padding: 10px; }
+        </style>
+        <script src="js/jquery-3.1.1.min.js"></script>
+        <script src="js/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+        <script>
+            function howMany() {
+                var kids = prompt('Number of kids in class:', '30');
+//                if (kids <= 0 || $.type(kids) === "string" ) {
+//                    kids = prompt('Please try again. Number of kids in class:', '30');
+//                }
+//                else {
+//                    kids = 1;
+//                }
+                alert('kids:' + kids);
+                generate(kids);
+            }
+            
+            function generate(kids) {
+                var kids2 = kids;
+                for (var i = 0; i < kids; i++ ) {
+                    var dragDiv = '<div class="drag"><p>Default (snap: true), snaps to all other draggable elements</p></div>';
+                    var dropDiv = $('div#drop');
+                    dropDiv.append(dragDiv);
+                }
+                $( function() {
+//                $( ".draggable" ).draggable({ containment: "#containment-wrapper", scroll: false });
+                $('#drop').droppable({
+                    tolerance: 'fit'
+                });
+
+                $('.drag').draggable({
+                    revert: 'invalid',
+                    stop: function(){
+                        $(this).draggable('option','revert','invalid');
+                    }
+                });
+
+                $('.drag').droppable({
+                    greedy: true,
+                    tolerance: 'touch',
+                    drop: function(event,ui){
+                        ui.draggable.draggable('option','revert',true);
+                    }
+                });
+
+            } );
+            }
+            
+            
+        </script>
+    </head>
+    
+    <body>
+        <div id="drop">
+            
+<!--
+            <div class="drag">
+                <p>Default (snap: true), snaps to all other draggable elements</p>
+            </div>
+
+            <div class="drag">
+                <p>Default (snap: true), snaps to all other draggable elements</p>
+            </div>
+
+            <div class="drag">
+                <p>Default (snap: true), snaps to all other draggable elements</p>
+            </div>
+-->
+        </div>
+        <div id="key">
+            <button class="btn" onClick=howMany()>Kids</button>
+        </div>
+    </body>
+        
+</html>

@@ -4,13 +4,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Class Planner</title>
         <link rel="stylesheet" src="js/jquery-ui-1.12.1.custom/jquery-ui.min.css">
+        
         <style>
             body {margin: 0; border: 0; padding: 0;}
-            .btn {background-color:#f4f4f4; border:1px grey solid; margin:10px; width:100px; height:30px;}
-            .drag { width:100px; height:100px; padding: 5px; float: left; margin: 10px 10px 10px 10px; font-size: .9em; background-color: #d3d3d3; border:1px grey solid; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.37); }
-            .dropZone {width:90px; height:90px; margin-left:auto; margin-right:auto; background-color:red;}
+            .btn {background-color:#f4f4f4; border:1px grey solid; margin:5px; width:100px; height:40px;}
+            .btn:hover {background-color:#e0e0e0; border: 1px solid black;}
+            #drop {margin-left:auto; margin-right:auto;}
+            .drag { width:100px; height:100px; display:inline-block; margin: 10px 10px 10px 10px; text-align: center; background-color: #d3d3d3; border:1px grey solid; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.37); }
+            .dropZone {width:60px; height:60px; margin-left:auto; border:1px black solid; padding:10px; margin-right:auto; background-color:red;}
             .ui-state-highlight {background-color:blue; border:1px yellow solid;}
-            #key{width:1000px; height:50px; background-color:grey; padding:10px;}
+            #key{width:1000px; height:50px; margin-left:auto; margin-right:auto; background-color:grey; padding:10px;}
             #keyItems{display:inline-block; background-color: yellow;}
             .keyIcon {width:20px; height:20px; padding:5px; border:1px black solid; text-align: center; margin:5px; display:inline-block;}
             #snaptarget { height: 140px; }
@@ -34,7 +37,7 @@
             function generate(kids) {
                 var kids2 = kids;
                 for (var i = 0; i < kids; i++ ) {
-                    var dragDiv = '<div class="drag draggable-nonvalid"><div class="dropZone"><p>Default (snap: true), snaps to all other draggable elements</p></div></div>';
+                    var dragDiv = '<div class="drag draggable-nonvalid"><div class="dropZone"><p>Student</p></div></div>';
                     var dropDiv = $('div#drop');
                     dropDiv.append(dragDiv);
                 }
